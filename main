@@ -1,0 +1,76 @@
+import sys
+import os.path
+from os import path
+
+def main():
+    saveuser();
+
+def askinfo():
+    global whichfilename
+    global whichoption
+    checkpoint = "askinfo";
+    print("Welcome to the supermarket!")
+    fileDir = os.path.dirname(os.path.realpath("__file__"));
+    
+    whichoption = input("1-Fruit \n"
+                        "2-Poultry \n"
+                        "3-Meat \n"
+                        "4-Beverage \n"
+                        "5-Frozen Foods \n"
+                        "6-Dietary Food \n"
+                        "7-Kosher \n"
+                        "8-Halal \n"
+                        "Please enter the number beside the category you'd like to browse: ");
+
+    match(whichoption):
+        case "1":
+            fileconnectivity();
+            filepath = fileDir + "\Screen1.py";
+        case "2":
+            filepath = fileDir + "\Screen2.py";
+        case "3":
+            filepath = fileDir + "\Screen3.py";
+        case "4":
+            filepath = fileDir + "\Screen4.py";
+        case "5":
+            filepath = fileDir + "\Screen5.py";
+        case "6":
+            filepath = fileDir + "\Screen6.py";
+        case "7":
+            filepath = fileDir + "\Screen7.py";
+        case "8":
+            filepath = fileDir + "\Screen8.py";
+        case default:
+            print("Error. Enter valid response");
+            askinfo();
+            sys.exit
+
+    
+    filenamepath = {
+        "__file__":filepath,
+        "__name__":"__main__",
+        };
+    with open(filepath,"rb")as file:
+        exec(compile(file.read(),filepath,"exec"),filenamepath);
+        
+def fileconnectivity():
+    fileDir = os.path.dirname(os.path.realpath("__file__"));
+    whichfilename = "receipt" + ".doc"
+    adminfile = open(whichfilename,"x");
+    saveuser();
+    
+
+def saveuser():
+    print("Please enter your username and password to save order ");
+    username = str(input("Username: "));
+    password = str(input("Password: "));
+    Writetofile(username,password,whichfilename);
+
+def Writetofile():
+    adminfile = open(thefile,"w");
+    adminfile.write(name + "," + passwd);
+    adminfile.close();
+      
+if __name__ == "__main__":
+    main();
+    
